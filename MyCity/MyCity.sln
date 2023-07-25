@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCity", "MyCity.csproj", "{99287808-6551-48A1-A190-79CF175DD051}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "..\Services\Services.csproj", "{A0D3046A-BA61-4FA1-A6E1-AA13D5C21352}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySity.Services", "..\Services\MySity.Services.csproj", "{A0D3046A-BA61-4FA1-A6E1-AA13D5C21352}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
