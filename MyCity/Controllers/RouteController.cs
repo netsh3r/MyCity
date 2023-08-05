@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyCity.Core.Models;
 using MyCity.Core.Services;
-using Route = MyCity.DataAccess.Entities.Route;
+using RouteEntity = MyCity.DataAccess.Entities.Route;
 
 namespace MyCity.Controllers;
 
@@ -15,27 +16,32 @@ public class RouteController : ControllerBase
         _routeService = routeService;
     }
 
-    public async Task<ActionResult<DataAccess.Entities.Route>> Create()
+    public async Task<IEnumerable<RouteEntity>> List()
     {
-        return await _routeService.CrateAsync(new DataAccess.Entities.Route());
+        return await _routeService.ListAsync();
     }
-    // public Route Create()
-    // {
-    //     return new Route();
-    // }
-    //
-    // public Route Update()
-    // {
-    //     return new Route();
-    // }
-    //
-    // public void Delete()
-    // {
-    //     
-    // }
-    //
-    // public Route Get(long id)
-    // {
-    //     return new Route();
-    // }
+
+    [HttpPut]
+    public async Task<ActionResult<RouteEntity>> Create(RouteDto dto)
+    {
+        return await _routeService.CrateAsync(dto);
+    }
+
+    [HttpPut]
+    public async Task<ActionResult<RouteEntity>> Update(RouteDto dto)
+    {
+        return await _routeService.UpdateAsync(dto);
+    }
+
+    [HttpDelete]
+    public async Task Delete(long id)
+    {
+        await _routeService.DeleteAsync(id);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<RouteEntity>> Get(long id)
+    {
+        return await _routeService.GetAsync(id);
+    }
 }

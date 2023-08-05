@@ -1,5 +1,7 @@
-﻿using MyCity.Core.Repository;
+﻿using MyCity.Core.Models;
+using MyCity.Core.Repository;
 using MyCity.Core.Services;
+using MyCity.DataAccess.Migrations;
 
 namespace MyCity.Route.Service.Services;
 using DataAccess.Entities;
@@ -13,14 +15,29 @@ public class RouteService : IRouteService
         _repositoryRoute = repositoryRoute;
     }
 
-    public async Task<Route> CrateAsync(Route route)
+    public async Task<IEnumerable<Route>> ListAsync()
     {
-        return await _repositoryRoute.CreateAsync(route);
+        return await _repositoryRoute.ListAsync();
     }
 
-    public async Task<Route> UpdateAsync(Route route)
+    public async Task<Route> CrateAsync(RouteDto dto)
     {
-        return await _repositoryRoute.UpdateAsync(route);
+        return await _repositoryRoute.CreateAsync(new Route
+        {
+            Length = dto.Length,
+            Name = dto.Name,
+            StartRoutePointId = dto.LinkListLocations.CurrentIdLocation
+        });
+    }
+
+    public async Task<Route> UpdateAsync(RouteDto dto)
+    {
+        return await _repositoryRoute.UpdateAsync(new Route{
+            Id = dto.Id!.Value,
+            Length = dto.Length,
+            Name = dto.Name,
+            StartRoutePointId = dto.LinkListLocations.CurrentIdLocation
+        });
     }
 
     public async Task DeleteAsync(long id)

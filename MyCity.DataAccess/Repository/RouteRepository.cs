@@ -1,4 +1,5 @@
-﻿using MyCity.Core.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCity.Core.Repository;
 using MyCity.DataAccess.Entities;
 
 namespace MyCity.DataAccess.Repository;
@@ -25,5 +26,11 @@ public class RouteRepository : IRepository<Route>
     public Task DeleteAsync(long id)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<IEnumerable<Route>> ListAsync()
+    {
+        using var dbContext = new ApplicationContext();
+        return await dbContext.Routes.ToListAsync();
     }
 }
