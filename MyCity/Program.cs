@@ -8,7 +8,10 @@ namespace MyCity
         {
             var builder = WebApplication.CreateBuilder();
 
-            builder.Services.AddDependencyGroup();
+            builder.Services.AddControllers();
+            // builder.Services.AddDependencyGroup();
+            Route.Service.Modules.AddDependencyGroup(builder.Services);
+            Modules.AddDependencyGroup(builder.Services);
             builder.WebHost.UseUrls();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

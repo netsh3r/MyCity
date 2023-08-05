@@ -4,7 +4,7 @@
     using TestServices;
     public static class Modules
     {
-        public static IServiceCollection AddDependencyGroup(this IServiceCollection services)
+        public static IServiceCollection AddDependencyGroup(IServiceCollection services)
         {
             services.AddScoped<TestService>();
             return services;
