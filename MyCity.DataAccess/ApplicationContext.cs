@@ -7,6 +7,8 @@ public class ApplicationContext : DbContext
 {
     public DbSet<Route> Routes { get; set; }
     public DbSet<RoutePoints> RoutePoints { get; set; }
+    public DbSet<Point> Points { get; set; }
+    public DbSet<Location> Locations { get; set; }
     public ApplicationContext() => Database.EnsureCreated();
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
