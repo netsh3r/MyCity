@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyCity.Route.Service\MyCity.Route.Service.csproj" />
-    <ProjectReference Include="..\MyCity.Service\MyCity.Services.csproj" />
   </ItemGroup>
 
 </Project>
