@@ -13,19 +13,30 @@ public class RouteRepository : IRepository<Route>
         return route;
     }
 
-    public Task<Route> UpdateAsync(Route entity)
+    public async Task<Route> UpdateAsync(Route entity)
     {
-        throw new NotImplementedException();
+        using var dbContext = new ApplicationContext();
+        dbContext.Routes.Entry(entity).State = EntityState.Modified;
+        await dbContext.SaveChangesAsync();
+        return entity;
     }
 
-    public Task<Route> GetAsync(long id)
+    public async Task<Route> GetAsync(long id)
     {
-        throw new NotImplementedException();
+        using var dbContext = new ApplicationContext();
+        return await dbContext.Routes.FindAsync(id);
     }
 
-    public Task DeleteAsync(long id)
+    public async Task DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        using var dbContext = new ApplicationContext();
+        var entity = await dbContext.Routes.FindAsync(id);
+
+        if (entity == null)
+            return;
+
+        dbContext.Routes.Remove(entity);
+        await dbContext.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<Route>> ListAsync()
