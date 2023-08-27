@@ -12,7 +12,6 @@ public static class Modules
 {
     /// <summary>
     ///     Метод регистрации зависимости
-    ///     Необходим для регистрации репозиториев в инфрастркутрных файлах проекта
     /// </summary>
     public static IServiceCollection AddDependencyGroup(IServiceCollection services)
     {

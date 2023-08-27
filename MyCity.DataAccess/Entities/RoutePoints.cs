@@ -7,7 +7,6 @@ public class RoutePoints : BaseEntity
 {
     /// <summary>
     ///    Следующая точка маршрута 
-    ///    TODO : может быть хранить здесь Id а не ссылку на экземпляр? 
     /// </summary>
     public RoutePoints NextRoutePoint { get; set; }
 

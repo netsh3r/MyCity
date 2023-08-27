@@ -1,7 +1,7 @@
 ﻿namespace MyCity.Core.Models;
 
 /// <summary>
-///     DTO маршрута для для внешних запросов
+///     DTO маршрута
 /// </summary>
 public class RouteDto : BaseDto
 {
@@ -17,7 +17,6 @@ public class RouteDto : BaseDto
 
     /// <summary>
     ///     Модель данных, указывающая на первую точку маршрута
-    ///     TODO Правильно ли хранить только первую точку маршрута? 
     /// </summary>
-    public LinkListLocation LinkListLocations { get; set; }
+    public LinkListLocationDto LinkListLocations { get; set; }
 }

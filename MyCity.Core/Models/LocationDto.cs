@@ -1,7 +1,7 @@
 ﻿namespace MyCity.Core.Models;
 
 /// <summary>
-///     DTO локации для внешних запросов
+///     DTO локации
 /// </summary>
 public class LocationDto : BaseDto
 {

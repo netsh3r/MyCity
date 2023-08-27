@@ -3,9 +3,8 @@
 /// <summary>
 ///     Модель реализующая точку маршрута
 ///     Имеет ссылку на следующию точку
-///     TODO Переименовать на RoutLocationList
 /// </summary>
-public class LinkListLocation
+public class LinkListLocationDto
 {
     /// <summary>
     ///     Id локации, на которую укзаывает точка маршрута
@@ -15,7 +14,7 @@ public class LinkListLocation
     /// <summary>
     ///     Следующая точка маршрута
     /// </summary>
-    public LinkListLocation? NextLocation { get; set; }
+    public LinkListLocationDto? NextLocation { get; set; }
 
     /// <summary>
     ///     Комментарий о точке маршрута

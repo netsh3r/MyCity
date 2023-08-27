@@ -5,5 +5,8 @@
 /// </summary>
 public class BaseDto
 {
+    /// <summary>
+    ///     Индификатор
+    /// </summary>
     public long? Id { get; set; }
 }
