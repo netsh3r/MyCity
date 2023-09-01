@@ -13,12 +13,12 @@ public class RouteRepository : IRepository<Route>
         return route;
     }
 
-    public async Task<Route> UpdateAsync(Route entity)
+    public async Task<Route> UpdateAsync(Route route)
     {
         using var dbContext = new ApplicationContext();
-        dbContext.Routes.Entry(entity).State = EntityState.Modified;
+        dbContext.Routes.Entry(route).State = EntityState.Modified;
         await dbContext.SaveChangesAsync();
-        return entity;
+        return route;
     }
 
     public async Task<Route> GetAsync(long id)
