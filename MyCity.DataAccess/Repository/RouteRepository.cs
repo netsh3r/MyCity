@@ -4,6 +4,9 @@ using MyCity.DataAccess.Entities;
 
 namespace MyCity.DataAccess.Repository;
 
+/// <summary>
+///     Репозиторий маршрута
+/// </summary>
 public class RouteRepository : IRepository<Route>
 {
     public async Task<Route> CreateAsync(Route route)

@@ -1,11 +1,17 @@
-﻿using MyCity.Core.Services;
+﻿namespace MyCity.Route.Service;
+
+using MyCity.Core.Services;
 using MyCity.Route.Service.Services;
-
-namespace MyCity.Route.Service;
-
 using Microsoft.Extensions.DependencyInjection;
+
+/// <summary>
+///     Класс для регистрации зависимости
+/// </summary>
 public static class Modules
 {
+    /// <summary>
+    ///     Метод регистрации зависимости
+    /// </summary>
     public static IServiceCollection AddDependencyGroup(this IServiceCollection services)
     {
         services.AddScoped<IRouteService, RouteService>();

@@ -1,20 +1,17 @@
+using MyCity.Route.Service;
+
 namespace MyCity
 {
-    using Services;
-
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder();
-
+            builder.Services.AddDependencyGroup();
             builder.Services.AddControllers();
-            // builder.Services.AddDependencyGroup();
             Route.Service.Modules.AddDependencyGroup(builder.Services);
-            Modules.AddDependencyGroup(builder.Services);
             builder.WebHost.UseUrls();
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddCors(options =>
@@ -22,7 +19,7 @@ namespace MyCity
                 options.AddPolicy("CorsAllowAll",
                     builder =>
                     {
-                        //TODO: change origins after create fron project
+                        //TODO: change origins after create front project
                         builder
                             .WithOrigins(
                                 "http://localhost:3000",
@@ -48,7 +45,7 @@ namespace MyCity
             app.UseCors("CorsAllowAll");
             app.UseHttpsRedirection();
 
-            // app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.MapControllers();
 
