@@ -1,9 +1,8 @@
-﻿using MyCity.Core.Models;
+﻿namespace MyCity.Route.Service.Services;
+
+using MyCity.Core.Models;
 using MyCity.Core.Repository;
 using MyCity.Core.Services;
-using MyCity.DataAccess.Migrations;
-
-namespace MyCity.Route.Service.Services;
 using DataAccess.Entities;
 
 public class RouteService : IRouteService
