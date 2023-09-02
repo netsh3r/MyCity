@@ -22,11 +22,17 @@ public class RouteController : ControllerBase
         return await _routeService.ListAsync();
     }
 
-    [HttpPut]
+    [HttpPost]
     public async Task<ActionResult<RouteEntity>> Create(RouteDto dto)
     {
         return await _routeService.CrateAsync(dto);
     }
+
+    /*[HttpPut]
+    public async Task<ActionResult<RouteEntity>> AddRoutePoints()
+    {
+        throw new NotImplementedException();
+    }*/
 
     [HttpPut]
     public async Task<ActionResult<RouteEntity>> Update(RouteDto dto)

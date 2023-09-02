@@ -2,7 +2,6 @@
 
 public class RoutePoints : BaseEntity
 {
-    public RoutePoints NextRoutePoint { get; set; }
-    public string Description { get; set; }
-    public Point Point { get; set; }
+    public long RouteId { get; set; }
+    public string RoutePointsObj { get; set; }
 }
