@@ -1,12 +1,12 @@
 ﻿namespace MyCity.DataAccess.Entities;
 
 /// <summary>
-/// Базовый класс сущности
+///     Базовый класс сущности
 /// </summary>
 public class BaseEntity
 {
     /// <summary>
-    /// Идентификатор
+    ///     Идентификатор
     /// </summary>
     public long Id { get; set; }
 }

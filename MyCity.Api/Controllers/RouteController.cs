@@ -46,7 +46,7 @@ public class RouteController : ControllerBase
         await _routeService.DeleteAsync(id);
     }
 
-    [HttpGet]
+    [HttpGet("Get")]
     public async Task<ActionResult<RouteEntity>> Get(long id)
     {
         return await _routeService.GetAsync(id);
