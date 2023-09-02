@@ -17,7 +17,7 @@ namespace MyCity.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.9")
+                .HasAnnotation("ProductVersion", "7.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -39,10 +39,10 @@ namespace MyCity.DataAccess.Migrations
                     b.Property<long?>("PointId")
                         .HasColumnType("bigint");
 
-                    b.Property<TimeOnly>("WorkTimeEnd")
+                    b.Property<TimeOnly?>("WorkTimeEnd")
                         .HasColumnType("time without time zone");
 
-                    b.Property<TimeOnly>("WorkTimeStart")
+                    b.Property<TimeOnly?>("WorkTimeStart")
                         .HasColumnType("time without time zone");
 
                     b.HasKey("Id");
@@ -61,9 +61,11 @@ namespace MyCity.DataAccess.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("X")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Y")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -83,6 +85,7 @@ namespace MyCity.DataAccess.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<long>("StartRoutePointId")
@@ -102,12 +105,13 @@ namespace MyCity.DataAccess.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long?>("NextRoutePointId")
+                    b.Property<long>("NextRoutePointId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("PointId")
+                    b.Property<long>("PointId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -124,6 +128,25 @@ namespace MyCity.DataAccess.Migrations
                     b.HasOne("MyCity.DataAccess.Entities.Point", "Point")
                         .WithMany()
                         .HasForeignKey("PointId");
+
+                    b.Navigation("Point");
+                });
+
+            modelBuilder.Entity("MyCity.DataAccess.Entities.RoutePoints", b =>
+                {
+                    b.HasOne("MyCity.DataAccess.Entities.RoutePoints", "NextRoutePoint")
+                        .WithMany()
+                        .HasForeignKey("NextRoutePointId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyCity.DataAccess.Entities.Point", "Point")
+                        .WithMany()
+                        .HasForeignKey("PointId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NextRoutePoint");
 
                     b.Navigation("Point");
                 });
