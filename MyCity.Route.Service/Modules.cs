@@ -1,4 +1,4 @@
-﻿namespace MyCity.Route.Service;
+﻿namespace MyCity.Route;
 
 using MyCity.Core.Services;
 using MyCity.Route.Service.Services;

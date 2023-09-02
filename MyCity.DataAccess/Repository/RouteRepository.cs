@@ -9,10 +9,16 @@ namespace MyCity.DataAccess.Repository;
 /// </summary>
 public class RouteRepository : IRepository<Route>
 {
+    private readonly ApplicationContext _db;
+
+    public RouteRepository(ApplicationContext db)
+    {
+        _db = db;
+    }
+
     public async Task<Route> CreateAsync(Route route)
     {
-        using var dbContext = new ApplicationContext();
-        await dbContext.AddAsync(route);
+        await _db.AddAsync(route);
         return route;
     }
 
@@ -33,7 +39,6 @@ public class RouteRepository : IRepository<Route>
 
     public async Task<IEnumerable<Route>> ListAsync()
     {
-        using var dbContext = new ApplicationContext();
-        return await dbContext.Routes.ToListAsync();
+        return await _db.Routes.ToListAsync();
     }
 }

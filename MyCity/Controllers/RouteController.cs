@@ -16,32 +16,33 @@ public class RouteController : ControllerBase
         _routeService = routeService;
     }
 
-    public async Task<IEnumerable<RouteEntity>> List()
-    {
-        return await _routeService.ListAsync();
-    }
+    //[HttpGet]
+    //public async Task<IEnumerable<RouteEntity>> List()
+    //{
+    //    return await _routeService.ListAsync();
+    //}
 
-    [HttpPut]
-    public async Task<ActionResult<RouteEntity>> Create(RouteDto dto)
-    {
-        return await _routeService.CrateAsync(dto);
-    }
+    //[HttpPut]
+    //public async Task<ActionResult<RouteEntity>> Create(RouteDto dto)
+    //{
+    //    return await _routeService.CrateAsync(dto);
+    //}
 
-    [HttpPut]
-    public async Task<ActionResult<RouteEntity>> Update(RouteDto dto)
-    {
-        return await _routeService.UpdateAsync(dto);
-    }
+    //[HttpPut]
+    //public async Task<ActionResult<RouteEntity>> Update(RouteDto dto)
+    //{
+    //    return await _routeService.UpdateAsync(dto);
+    //}
 
-    [HttpDelete]
-    public async Task Delete(long id)
-    {
-        await _routeService.DeleteAsync(id);
-    }
+    //[HttpDelete]
+    //public async Task Delete(long id)
+    //{
+    //    await _routeService.DeleteAsync(id);
+    //}
 
-    [HttpGet]
-    public async Task<ActionResult<RouteEntity>> Get(long id)
-    {
-        return await _routeService.GetAsync(id);
-    }
+    //[HttpGet]
+    //public async Task<ActionResult<RouteEntity>> Get(long id)
+    //{
+    //    return await _routeService.GetAsync(id);
+    //}
 }

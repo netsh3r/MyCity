@@ -15,7 +15,7 @@ public static class Modules
     /// </summary>
     public static IServiceCollection AddDependencyGroup(IServiceCollection services)
     {
-        services.AddSingleton<IRepository<Route>, RouteRepository>();
+        services.AddScoped<IRepository<Route>, RouteRepository>();
         return services;
     }
 }

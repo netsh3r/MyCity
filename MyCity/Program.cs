@@ -1,15 +1,24 @@
-using MyCity.Route.Service;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using MyCity.DataAccess;
 
 namespace MyCity
 {
     public class Program
     {
+        // TODO
+        // Maybe rewrite to .net6 style? 
+        // How take from json some section? 
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder();
-            builder.Services.AddDependencyGroup();
-            builder.Services.AddControllers();
-            Route.Service.Modules.AddDependencyGroup(builder.Services);
+
+            var connectionString = builder.Configuration.GetConnectionString("DB:NpgSql");
+            builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connectionString));
+
+            DataAccess.Modules.AddDependencyGroup(builder.Services);
+            Route.Modules.AddDependencyGroup(builder.Services);
+
             builder.WebHost.UseUrls();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -42,6 +51,7 @@ namespace MyCity
                 app.UseSwaggerUI();
             }
 
+            app.UseHttpsRedirection();
             app.UseCors("CorsAllowAll");
             app.UseHttpsRedirection();
 
