@@ -22,12 +22,12 @@ public class RouteRepository : IRepository<Route>
         return route;
     }
 
-    public Task<Route> UpdateAsync(Route entity)
+    public Task<Route> UpdateAsync(Route location)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Route> GetAsync(long id)
+    public Task<Route?> GetAsync(long id)
     {
         throw new NotImplementedException();
     }

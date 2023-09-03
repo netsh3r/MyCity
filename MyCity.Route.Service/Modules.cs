@@ -1,7 +1,7 @@
 ﻿namespace MyCity.Route
 {
     using MyCity.Core.Services;
-    using MyCity.Route.Service.Services;
+    using MyCity.Route.Services;
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>

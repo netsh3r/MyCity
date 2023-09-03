@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using MyCity.Api.Map;
 using MyCity.DataAccess;
 using MyCity.Route;
+using MyCity.Location;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,10 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(c
 
 MyCity.DataAccess.Modules.AddDependencyGroup(builder.Services);
 MyCity.Route.Modules.AddDependencyGroup(builder.Services);
+MyCity.Location.Modules.AddDependencyGroup(builder.Services);
 
 builder.WebHost.UseUrls();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
