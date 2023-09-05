@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2d3b67cd-d2ca-47bd-bca7-ea229d6b248a": {
+      "ProjectGuid": "2d3b67cd-d2ca-47bd-bca7-ea229d6b248a",
+      "DisplayName": "MyCity.DataAccess",
+      "ColorIndex": 0
+    },
+    "02d91f7d-f8d5-4d00-891b-71f350d0aa24": {
+      "ProjectGuid": "02d91f7d-f8d5-4d00-891b-71f350d0aa24",
+      "DisplayName": "MyCity.Core",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

@@ -51,4 +51,12 @@ public class RouteController : ControllerBase
     {
         return await _routeService.GetAsync(id);
     }
+
+    #region Попытки реализации
+    [HttpPost]
+    public async Task<ActionResult<ClientRouteDto>> Create(ClientRouteDto clientRouteDto)
+    {
+        return await _routeService.CreateRouteAsync(clientRouteDto);
+    }
+    #endregion
 }
