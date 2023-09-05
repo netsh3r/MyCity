@@ -6,42 +6,43 @@ namespace MyCity.DataAccess.Repository
 {
     public class RoutePointsRepository : IRepository<RoutePoints>
     {
+        private readonly ApplicationContext _db;
+
+        public RoutePointsRepository(ApplicationContext db)
+        {
+            _db = db;
+        }
         public async Task<RoutePoints> CreateAsync(RoutePoints routePoint)
         {
-            using var dbContext = new ApplicationContext();
-            await dbContext.RoutePoints.AddAsync(routePoint);
+            await _db.RoutePoints.AddAsync(routePoint);
             return routePoint;
         }
 
         public async Task DeleteAsync(long id)
         {
-            using var dbContext = new ApplicationContext();
-            var entity = await dbContext.RoutePoints.FindAsync(id);
+            var entity = await _db.RoutePoints.FindAsync(id);
 
             if (entity == null)
                 return;
 
-            dbContext.RoutePoints.Remove(entity);
-            await dbContext.SaveChangesAsync();
+            _db.RoutePoints.Remove(entity);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<RoutePoints> GetAsync(long id)
         {
-            using var dbContext = new ApplicationContext();
-            return await dbContext.RoutePoints.FindAsync(id);
+            return await _db.RoutePoints.FindAsync(id);
         }
 
         public async Task<IEnumerable<RoutePoints>> ListAsync()
         {
-            using var dbContext = new ApplicationContext();
-            return await dbContext.RoutePoints.ToListAsync();
+            return await _db.RoutePoints.ToListAsync();
         }
 
         public async Task<RoutePoints> UpdateAsync(RoutePoints routePoint)
         {
-            using var dbContext = new ApplicationContext();
-            dbContext.RoutePoints.Entry(routePoint).State = EntityState.Modified;
-            await dbContext.SaveChangesAsync();
+            _db.RoutePoints.Entry(routePoint).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
             return routePoint;
         }
     }
