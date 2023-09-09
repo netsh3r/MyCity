@@ -23,7 +23,7 @@ public class LocationService : ILocationService
         return _repositoryLocation.ListAsync();
     }
 
-    public async Task<Location> CrateAsync(LocationDto locationDto)
+    public async Task<Location> CreateAsync(LocationDto locationDto)
     {
         var location = _mapper.Map<Location>(locationDto);
         return await _repositoryLocation.CreateAsync(location);

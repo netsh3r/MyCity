@@ -11,6 +11,11 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<DataAccess.Entities.Location, LocationDto>().ReverseMap();
+        CreateMap<DataAccess.Entities.Location, LocationDto>().ReverseMap()
+            .ForMember(location => location.LocationType, 
+                dto => 
+                    dto.MapFrom(x => x.LocationType));
+        
+        //CreateMap<DataAccess.Entities.Location, LocationDto>().()
     }
 }

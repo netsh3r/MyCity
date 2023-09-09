@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyCity.Core.Models;
 using MyCity.Core.Services;
 
 namespace MyCity.Controllers;
@@ -14,10 +15,58 @@ public class LocationController : ControllerBase
         _locationService = locationService;
     }
     
-    [HttpGet]
-    public async Task<ActionResult<DataAccess.Entities.Location>> Get([FromQuery(Name = "Id")] long id)
+    [HttpGet, Route("GetLocation/{id}")]
+    public async Task<ActionResult<DataAccess.Entities.Location>> GetLocation(long id)
     {
-        var location = await _locationService.GetAsync(id);
-        return location != null ? location : NotFound();
+        try
+        {
+            var location = await _locationService.GetAsync(id);
+            return location != null ? Ok(location) : BadRequest();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+    
+    [HttpPut, Route("CreateLocation")]
+    public async Task<ActionResult<DataAccess.Entities.Location>> CreateLocation([FromBody] LocationDto locationDto)
+    {
+        try
+        {
+            return await _locationService.CreateAsync(locationDto);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+    
+    [HttpPut, Route("UpdateLocation")]
+    public async Task<ActionResult<DataAccess.Entities.Location>> UpdateLocation([FromBody] LocationDto locationDto)
+    {
+        try
+        {
+            return await _locationService.UpdateAsync(locationDto); 
+        }
+        
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpDelete, Route("DeleteLocation/{id}")]
+    public async Task<ActionResult<DataAccess.Entities.Location>> DeleteLocation(long id)
+    {
+        try
+        {
+            await _locationService.DeleteAsync(id);
+            return Ok();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

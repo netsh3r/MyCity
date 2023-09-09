@@ -19,7 +19,7 @@ public class RouteService : IRouteService
         return await _repositoryRoute.ListAsync();
     }
 
-    public async Task<Route> CrateAsync(RouteDto locationDto)
+    public async Task<Route> CreateAsync(RouteDto locationDto)
     {
         return await _repositoryRoute.CreateAsync(new Route
         {

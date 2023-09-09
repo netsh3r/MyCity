@@ -14,4 +14,11 @@ public class ApplicationContext : DbContext
     {
         Database.EnsureCreated();
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Location>()
+            .Property(x => x.LocationType)
+            .HasConversion<int>();
+    }
 }
