@@ -51,7 +51,8 @@ namespace MyCity.DataAccess.Migrations
                     Description = table.Column<string>(type: "text", nullable: true),
                     WorkTimeStart = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
                     WorkTimeEnd = table.Column<TimeOnly>(type: "time without time zone", nullable: true),
-                    PointId = table.Column<long>(type: "bigint", nullable: true)
+                    PointId = table.Column<long>(type: "bigint", nullable: true),
+                    LocationType = table.Column<int>(type :  "integer", nullable: false),
                 },
                 constraints: table =>
                 {

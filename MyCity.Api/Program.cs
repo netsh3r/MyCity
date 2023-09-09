@@ -15,7 +15,7 @@ MyCity.Location.Modules.AddDependencyGroup(builder.Services);
 
 builder.WebHost.UseUrls();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>

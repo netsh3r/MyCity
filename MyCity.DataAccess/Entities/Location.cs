@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using MyCity.DataAccess.Enums;
 
 namespace MyCity.DataAccess.Entities;
@@ -31,8 +32,7 @@ public class Location : BaseEntity
     /// <summary>
     ///     Тип локации
     /// </summary>
-    [Required] 
-    public LocationType LocationType { get; set; } 
+    public LocationType? LocationType { get; set; } 
 
     /// <summary>
     ///     Координаты локации в двухмерной проекции

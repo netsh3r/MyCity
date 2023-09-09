@@ -15,6 +15,7 @@ public class LocationController : ControllerBase
         _locationService = locationService;
     }
     
+    [ProducesResponseType(200,Type = typeof(DataAccess.Entities.Location))]
     [HttpGet, Route("GetLocation/{id}")]
     public async Task<ActionResult<DataAccess.Entities.Location>> GetLocation(long id)
     {

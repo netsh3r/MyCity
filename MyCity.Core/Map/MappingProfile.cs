@@ -1,4 +1,5 @@
 ﻿using MyCity.Core.Models;
+using MyCity.DataAccess.Entities;
 
 namespace MyCity.Api.Map;
 
@@ -11,11 +12,12 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<DataAccess.Entities.Location, LocationDto>().ReverseMap()
-            .ForMember(location => location.LocationType, 
-                dto => 
-                    dto.MapFrom(x => x.LocationType));
-        
-        //CreateMap<DataAccess.Entities.Location, LocationDto>().()
+        CreateMap<DataAccess.Entities.Location, LocationDto>()
+            .ForMember(dest => dest.LocationType, 
+                opt => opt.MapFrom(src => src.LocationType));
+
+        CreateMap<LocationDto, Location>()
+            .ForMember(dest => dest.LocationType,
+                opt => opt.MapFrom(src => src.LocationType));
     }
 }
