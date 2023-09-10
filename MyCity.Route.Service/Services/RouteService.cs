@@ -52,38 +52,49 @@ public class RouteService : IRouteService
     }
 
     #region Попытки реализации
-    public async Task<ClientRouteDto> CreateRouteAsync(ClientRouteDto clientRouteDto)
+    public async Task<ClientRouteDto> CreateOrUpdateAsync(ClientRouteDto clientRouteDto)
     {
-        var route = await _repositoryRoute.GetAsync(clientRouteDto.RouteId);
-        if (route == null)
+        try
         {
-            var newRoute = await _repositoryRoute.CreateAsync(new Route
+            var route = await _repositoryRoute.GetAsync(clientRouteDto.RouteId);
+            if (route == null)
             {
-                Name = clientRouteDto.Name,
-                Length = clientRouteDto.Length,
-                Description = clientRouteDto.Description
-            });
-
-            if (newRoute == null)
-                return null; //TODO: Сообщать об ошибке или попытаться создать Route ещё раз.
-            
-            var newRoutePoints = await _repositoryRoutePoints.CreateAsync(new RoutePoints
+                await CreateRouteAsync(clientRouteDto);
+            }
+            else
             {
-                RouteId = newRoute.Id,
-                RoutePointsObj = clientRouteDto.RoutePoints
-            });
+                await UpdateRouteAsync(clientRouteDto);
+            }
 
-            if (newRoutePoints == null)
-                return null; //TODO: Сообщать об ошибке или попытаться создать Route ещё раз.
-
-            // Распарсить RoutePointsOnj в Location
-
-        } else
-        {
-            //Update
         }
-
+        catch (Exception ex)
+        {
+            throw new Exception(message:"");
+        } 
         return clientRouteDto;
+    }
+
+    //Create
+    private async Task CreateRouteAsync(ClientRouteDto clientRouteDto)
+    {
+        var route = await _repositoryRoute.CreateAsync(new Route
+        {
+            Name = clientRouteDto.Name,
+            Length = clientRouteDto.Length,
+            Description = clientRouteDto.Description
+        });
+
+        var routePoints = await _repositoryRoutePoints.CreateAsync(new RoutePoints
+        {
+            RouteId = route.Id,
+            RoutePointsObj = clientRouteDto.RoutePoints
+        });
+    }
+
+    //Update
+    private async Task UpdateRouteAsync(ClientRouteDto clientRouteDto)
+    {
+
     }
     #endregion
 }

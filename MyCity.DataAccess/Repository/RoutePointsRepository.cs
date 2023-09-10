@@ -15,6 +15,7 @@ namespace MyCity.DataAccess.Repository
         public async Task<RoutePoints> CreateAsync(RoutePoints routePoint)
         {
             await _db.RoutePoints.AddAsync(routePoint);
+            await _db.SaveChangesAsync();
             return routePoint;
         }
 

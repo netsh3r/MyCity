@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public int Length { get; set; }
         public string Description { get; set; }
-        public string RoutePoints { get; set; }
+        public string RoutePoints { get; set; } // Сделать объектом, при сохранении 
         
         public ClientRouteDto()
         {

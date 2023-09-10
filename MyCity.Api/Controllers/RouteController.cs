@@ -53,10 +53,19 @@ public class RouteController : ControllerBase
     }
 
     #region Попытки реализации
-    [HttpPost]
-    public async Task<ActionResult<ClientRouteDto>> Create(ClientRouteDto clientRouteDto)
+    [HttpPut("route")]
+    public async Task<ActionResult> CreateOrUpdate(ClientRouteDto clientRouteDto)
     {
-        return await _routeService.CreateRouteAsync(clientRouteDto);
+        try
+        {
+            await _routeService.CreateOrUpdateAsync(clientRouteDto);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        
     }
     #endregion
 }
