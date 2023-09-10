@@ -30,7 +30,7 @@ public class RouteRepository : IRepository<Route>
         return route;
     }
 
-    public async Task<Route> GetAsync(long id)
+    public async Task<Route?> GetAsync(long id)
     {
         return await _db.Routes.FindAsync(id);
     }

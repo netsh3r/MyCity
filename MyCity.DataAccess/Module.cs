@@ -17,6 +17,7 @@ public static class Modules
     {
         services.AddScoped<IRepository<Route>, RouteRepository>();
         services.AddScoped<IRepository<RoutePoints>, RoutePointsRepository>();
+        services.AddScoped<IRepository<Location>, LocationRepository>();
         return services;
     }
 }

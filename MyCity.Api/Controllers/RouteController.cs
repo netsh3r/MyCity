@@ -25,7 +25,7 @@ public class RouteController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<RouteEntity>> Create(RouteDto dto)
     {
-        return await _routeService.CrateAsync(dto);
+        return await _routeService.CreateAsync(dto);
     }
 
     /*[HttpPut]

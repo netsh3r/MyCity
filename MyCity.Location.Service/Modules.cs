@@ -1,17 +1,22 @@
-﻿namespace MyCity.Route.Service;
-
-using Microsoft.Extensions.DependencyInjection;
-
-/// <summary>
-///     Класс для регистрации зависимости
-/// </summary>
-public static class Modules
+﻿namespace MyCity.Location
 {
+    using MyCity.Core.Services;
+    using MyCity.Location.Services;
+    using Microsoft.Extensions.DependencyInjection;
+
     /// <summary>
-    ///     Метод регистрации зависимости
+    ///     Класс для регистрации зависимости
     /// </summary>
-    public static IServiceCollection AddDependencyGroup(this IServiceCollection services)
+    public static class Modules
     {
-        return services;
+        /// <summary>
+        ///     Метод регистрации зависимости
+        /// </summary>
+        public static IServiceCollection AddDependencyGroup(this IServiceCollection services)
+        {
+            services.AddScoped<ILocationService, LocationService>();
+            return services;
+        }
     }
 }
+

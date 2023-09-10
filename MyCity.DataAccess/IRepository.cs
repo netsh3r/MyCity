@@ -6,7 +6,7 @@ public interface IRepository<T> where T: new()
 {
     Task<T> CreateAsync(T entity);
     Task<T> UpdateAsync(T entity);
-    Task<T> GetAsync(long id);
+    Task<T?> GetAsync(long id);
     Task DeleteAsync(long id);
     Task<IEnumerable<T>> ListAsync();
 }

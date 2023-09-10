@@ -5,7 +5,7 @@ public interface IBaseService<T, TDto>
     where TDto : new()
 {
     Task<IEnumerable<T>> ListAsync();
-    Task<T> CrateAsync(TDto dto);
+    Task<T> CreateAsync(TDto dto);
     Task<T> UpdateAsync(TDto dto);
     Task DeleteAsync(long id);
     Task<T> GetAsync(long id);

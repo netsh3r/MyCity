@@ -1,4 +1,4 @@
-﻿namespace MyCity.Route.Service.Services;
+﻿namespace MyCity.Route.Services;
 
 using MyCity.Core.Models;
 using MyCity.Core.Repository;
@@ -21,7 +21,7 @@ public class RouteService : IRouteService
         return await _repositoryRoute.ListAsync();
     }
 
-    public async Task<Route> CrateAsync(RouteDto dto)
+    public async Task<Route> CreateAsync(RouteDto dto)
     {
         return await _repositoryRoute.CreateAsync(new Route
         {
