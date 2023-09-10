@@ -5,5 +5,5 @@ namespace MyCity.Core.Services;
 
 public interface IRouteService : IBaseService<Route, RouteDto>
 {
-    Task<ClientRouteDto> CreateOrUpdateAsync(ClientRouteDto clientRouteDto);
+    Task CreateOrUpdateAsync(ClientRouteDto clientRouteDto);
 }

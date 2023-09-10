@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyCity.Api.Map;
 using MyCity.DataAccess;
-using MyCity.Route;
-using MyCity.Location;
 
 var builder = WebApplication.CreateBuilder(args);
 

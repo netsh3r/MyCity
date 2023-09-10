@@ -22,19 +22,13 @@ public class RouteController : ControllerBase
         return await _routeService.ListAsync();
     }
 
-    [HttpPost]
+    [HttpPut, Route("CreateRoute")]
     public async Task<ActionResult<RouteEntity>> Create(RouteDto dto)
     {
         return await _routeService.CreateAsync(dto);
     }
 
-    /*[HttpPut]
-    public async Task<ActionResult<RouteEntity>> AddRoutePoints()
-    {
-        throw new NotImplementedException();
-    }*/
-
-    [HttpPut]
+    [HttpPut, Route("UpdateRoute")]
     public async Task<ActionResult<RouteEntity>> Update(RouteDto dto)
     {
         return await _routeService.UpdateAsync(dto);
@@ -52,8 +46,8 @@ public class RouteController : ControllerBase
         return await _routeService.GetAsync(id);
     }
 
-    #region Попытки реализации
-    [HttpPut("route")]
+    #region Route and RoutePoints
+    [HttpPut("CreateOrUpdateRoute")]
     public async Task<ActionResult> CreateOrUpdate(ClientRouteDto clientRouteDto)
     {
         try

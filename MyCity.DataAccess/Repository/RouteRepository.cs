@@ -32,7 +32,7 @@ public class RouteRepository : IRepository<Route>
 
     public async Task<Route?> GetAsync(long id)
     {
-        return await _db.Routes.FindAsync(id);
+        return await _db.Routes.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task DeleteAsync(long id)
