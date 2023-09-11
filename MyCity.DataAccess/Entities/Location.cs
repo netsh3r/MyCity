@@ -1,4 +1,8 @@
-﻿namespace MyCity.DataAccess.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using MyCity.DataAccess.Enums;
+
+namespace MyCity.DataAccess.Entities;
 
 /// <summary>
 ///    Любое место, находщиеся на карте приложения  ( Бар, Музей and etc.. )
@@ -24,6 +28,11 @@ public class Location : BaseEntity
     ///     Окончание время работы локации
     /// </summary>
     public TimeOnly? WorkTimeEnd { get; set; }
+    
+    /// <summary>
+    ///     Тип локации
+    /// </summary>
+    public LocationType? LocationType { get; set; } 
 
     /// <summary>
     ///     Координаты локации в двухмерной проекции

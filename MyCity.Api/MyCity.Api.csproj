@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyCity.Location.Service\MyCity.Location.Service.csproj" />
     <ProjectReference Include="..\MyCity.Route.Service\MyCity.Route.Service.csproj" />
   </ItemGroup>
 

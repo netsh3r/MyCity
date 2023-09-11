@@ -49,7 +49,7 @@ namespace MyCity.DataAccess.Migrations
 
                     b.HasIndex("PointId");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("MyCity.DataAccess.Entities.Point", b =>
@@ -70,7 +70,7 @@ namespace MyCity.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Points");
+                    b.ToTable("Points", (string)null);
                 });
 
             modelBuilder.Entity("MyCity.DataAccess.Entities.Route", b =>
@@ -93,7 +93,7 @@ namespace MyCity.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Routes");
+                    b.ToTable("Routes", (string)null);
                 });
 
             modelBuilder.Entity("MyCity.DataAccess.Entities.RoutePoints", b =>
@@ -120,7 +120,7 @@ namespace MyCity.DataAccess.Migrations
 
                     b.HasIndex("PointId");
 
-                    b.ToTable("RoutePoints");
+                    b.ToTable("RoutePoints", (string)null);
                 });
 
             modelBuilder.Entity("MyCity.DataAccess.Entities.Location", b =>
