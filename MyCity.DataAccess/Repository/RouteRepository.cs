@@ -18,7 +18,7 @@ public class RouteRepository : IRepository<Route>
 
     public async Task<Route> CreateAsync(Route route)
     {
-        await _db.AddAsync(route);
+        await _db.AddRangeAsync(route);
         await _db.SaveChangesAsync();
         return route;
     }
@@ -49,5 +49,10 @@ public class RouteRepository : IRepository<Route>
     public async Task<IEnumerable<Route>> ListAsync()
     {
         return await _db.Routes.ToListAsync();
+    }
+
+    public DbSet<Route> GetAll()
+    {
+        return _db.Routes;
     }
 }

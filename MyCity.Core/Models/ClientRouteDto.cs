@@ -1,16 +1,11 @@
 ﻿namespace MyCity.Core.Models
 {
-    public class ClientRouteDto: BaseDto
+    public class ClientRouteDto
     {
         public long RouteId { get; set; }
         public string Name { get; set; }
         public int Length { get; set; }
         public string Description { get; set; }
-        public List<long> RoutePoints { get; set; }
-        
-        public ClientRouteDto()
-        {
-            this.Id = null;
-        }
+        public ClientRoutePointsDto[] RoutePoints { get; set; }
     }
 }

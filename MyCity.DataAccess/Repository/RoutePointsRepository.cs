@@ -40,6 +40,11 @@ namespace MyCity.DataAccess.Repository
             return await _db.RoutePoints.ToListAsync();
         }
 
+        public DbSet<RoutePoints> GetAll()
+        {
+            return _db.RoutePoints;
+        }
+
         public async Task<RoutePoints> UpdateAsync(RoutePoints routePoint)
         {
             _db.RoutePoints.Entry(routePoint).State = EntityState.Modified;

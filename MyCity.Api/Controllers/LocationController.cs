@@ -14,6 +14,13 @@ public class LocationController : ControllerBase
     {
         _locationService = locationService;
     }
+
+    [ProducesResponseType(200,Type = typeof(DataAccess.Entities.Location))]
+    [HttpPost, Route("List")]
+    public async Task<IEnumerable<DataAccess.Entities.Location>> List()
+    {
+        return await _locationService.ListAsync();
+    }
     
     [ProducesResponseType(200,Type = typeof(DataAccess.Entities.Location))]
     [HttpGet, Route("GetLocation/{id}")]

@@ -16,6 +16,7 @@ public class RouteController : ControllerBase
         _routeService = routeService;
     }
 
+    
     [HttpGet]
     public async Task<IEnumerable<RouteEntity>> List()
     {

@@ -59,15 +59,15 @@ public class RouteService : IRouteService
     {
         try
         {
-            var route = await _repositoryRoute.GetAsync(clientRouteDto.RouteId);
-            if (route == null)
-            {
+            var route = await _repositoryRoute.GetAsync(clientRouteDto.RouteId) != null ? 
+                await UpdateRouteAsync(clientRouteDto) :
                 await CreateRouteAsync(clientRouteDto);
-            }
-            else
+            
+            await _repositoryRoutePoints.CreateAsync(new RoutePoints
             {
-                await UpdateRouteAsync(clientRouteDto);
-            }
+                RouteId = route.Id,
+                RoutePointsObj = JsonConvert.SerializeObject(clientRouteDto.RoutePoints)
+            });
         }
         catch (Exception ex)
         {
@@ -80,59 +80,26 @@ public class RouteService : IRouteService
     /// </summary>
     /// <param name="clientRouteDto">DTO приходящая с клиента</param>
     /// <returns></returns>
-    private async Task CreateRouteAsync(ClientRouteDto clientRouteDto)
-    {
-        var locations = new List<Location>();
-        var route = await _repositoryRoute.CreateAsync(new Route
+    private async Task<Route> CreateRouteAsync(ClientRouteDto clientRouteDto)
+        => await _repositoryRoute.CreateAsync(new Route
         {
             Name = clientRouteDto.Name,
             Length = clientRouteDto.Length,
             Description = clientRouteDto.Description
         });
-
-        foreach (var locationId in clientRouteDto.RoutePoints)
-        {
-            var location = await _repositoryLocation.GetAsync(locationId) ?? null;
-            if (location != null)
-                locations.Add(location);
-        }
-
-        string routePointsObj = JsonConvert.SerializeObject(locations);
-        await _repositoryRoutePoints.CreateAsync(new RoutePoints
-        {
-            RouteId = route.Id,
-            RoutePointsObj = routePointsObj
-        });
-    }
 
     /// <summary>
     /// Изменение существующего Route и RoutePoints
     /// </summary>
     /// <param name="clientRouteDto"></param>
     /// <returns></returns>
-    private async Task UpdateRouteAsync(ClientRouteDto clientRouteDto)
-    {
-        var locations = new List<Location>();
-        var route = await _repositoryRoute.UpdateAsync(new Route
-        {
-            Name = clientRouteDto.Name,
-            Length = clientRouteDto.Length,
-            Description = clientRouteDto.Description
-        });
-
-        foreach (var locationId in clientRouteDto.RoutePoints)
-        {
-            var location = await _repositoryLocation.GetAsync(locationId) ?? null;
-            if (location != null)
-                locations.Add(location);
-        }
-
-        string routePointsObj = JsonConvert.SerializeObject(locations);
-        await _repositoryRoutePoints.UpdateAsync(new RoutePoints
-        {
-            RouteId = route.Id,
-            RoutePointsObj = routePointsObj
-        });
-    }
+    private async Task<Route> UpdateRouteAsync(ClientRouteDto clientRouteDto)
+     => await _repositoryRoute.UpdateAsync(new Route
+     {
+         Id = clientRouteDto.RouteId,
+         Name = clientRouteDto.Name,
+         Length = clientRouteDto.Length,
+         Description = clientRouteDto.Description
+     });
     #endregion
 }

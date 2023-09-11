@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using MyCity.Core.Repository;
 using MyCity.DataAccess.Entities;
 
@@ -15,7 +16,7 @@ public class LocationRepository : IRepository<Location>
     {
         _db = db;
     }
-    
+
     public async Task<Location> CreateAsync(Location entity)
     {
         await _db.Locations.AddAsync(entity);
@@ -47,5 +48,10 @@ public class LocationRepository : IRepository<Location>
     public async Task<IEnumerable<Location>> ListAsync()
     {
         return await _db.Locations.ToListAsync();
+    }
+    
+    public DbSet<Location> GetAll()
+    {
+        return _db.Locations;
     }
 }
