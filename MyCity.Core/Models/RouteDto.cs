@@ -1,22 +1,22 @@
 ﻿namespace MyCity.Core.Models;
 
 /// <summary>
-///     DTO маршрута
+/// DTO маршрута
 /// </summary>
 public class RouteDto : BaseDto
 {
     /// <summary>
-    ///     Имя маршрута    
+    /// Имя маршрута    
     /// </summary>
     public string Name { get; set; }
 
     /// <summary>
-    ///     Длина  маршрута   
+    /// Длина  маршрута   
     /// </summary>
     public int Length { get; set; }
 
     /// <summary>
-    ///     Модель данных, указывающая на первую точку маршрута
+    /// Описание маршрута
     /// </summary>
-    public LinkListLocationDto LinkListLocations { get; set; }
+    public string Description { get; set; }
 }

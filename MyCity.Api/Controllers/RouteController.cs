@@ -16,19 +16,20 @@ public class RouteController : ControllerBase
         _routeService = routeService;
     }
 
+    
     [HttpGet]
     public async Task<IEnumerable<RouteEntity>> List()
     {
         return await _routeService.ListAsync();
     }
 
-    [HttpPut("Put")]
+    [HttpPut, Route("CreateRoute")]
     public async Task<ActionResult<RouteEntity>> Create(RouteDto dto)
     {
         return await _routeService.CreateAsync(dto);
     }
 
-    [HttpPut]
+    [HttpPut, Route("UpdateRoute")]
     public async Task<ActionResult<RouteEntity>> Update(RouteDto dto)
     {
         return await _routeService.UpdateAsync(dto);
@@ -45,4 +46,21 @@ public class RouteController : ControllerBase
     {
         return await _routeService.GetAsync(id);
     }
+
+    #region Route and RoutePoints
+    [HttpPut("CreateOrUpdateRoute")]
+    public async Task<ActionResult> CreateOrUpdate(ClientRouteDto clientRouteDto)
+    {
+        try
+        {
+            await _routeService.CreateOrUpdateAsync(clientRouteDto);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        
+    }
+    #endregion
 }

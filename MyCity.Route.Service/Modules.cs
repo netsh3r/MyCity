@@ -15,6 +15,7 @@
         public static IServiceCollection AddDependencyGroup(this IServiceCollection services)
         {
             services.AddScoped<IRouteService, RouteService>();
+            services.AddScoped<RoutePointService, RoutePointService>();
             return services;
         }
     }

@@ -1,13 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MyCity.Api.Map;
 using MyCity.DataAccess;
-using MyCity.Route;
-using MyCity.Location;
 
 var builder = WebApplication.CreateBuilder(args);
-
-var connectionString = builder.Configuration.GetConnectionString("DB:NpgSql");
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connectionString));
 
 MyCity.DataAccess.Modules.AddDependencyGroup(builder.Services);
 MyCity.Route.Modules.AddDependencyGroup(builder.Services);
@@ -36,7 +31,8 @@ builder.Services.AddCors(options =>
                 .WithExposedHeaders("Content-Disposition");
         });
 });
-
+var connectionString = builder.Configuration.GetConnectionString("DB:NpgSql");
+builder.Services.AddDbContextPool<ApplicationContext>(options => options.UseNpgsql(connectionString));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

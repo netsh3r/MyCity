@@ -9,14 +9,6 @@ public class Route : BaseEntity
     ///     Имя маршрута 
     /// </summary>
     public string Name { get; set; }
-
-    /// <summary>
-    ///     Длина маршрута
-    /// </summary>
+    public string Description { get; set; }
     public int Length { get; set; }
-
-    /// <summary>
-    ///     Айдишник первой точки маршрута 
-    /// </summary>
-    public long StartRoutePointId { get; set; }
 }

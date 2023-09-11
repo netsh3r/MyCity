@@ -1,6 +1,6 @@
 /*/.idea
-/*/bin
-/*/obj
-/*/.vs
-/*/.vs/*
-/*/.idea/*
+[Bb]in
+[Oo]bj
+.vs
+.vs/*
+.idea/*
