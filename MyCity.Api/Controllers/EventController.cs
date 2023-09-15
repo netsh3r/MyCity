@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCity.Core.Models;
+using MyCity.Core.Services;
 
 namespace MyCity.Api.Controllers
 {
@@ -7,41 +8,79 @@ namespace MyCity.Api.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
-        [HttpGet]
+        private readonly IEventService _eventService;
+
+        public EventController(IEventService eventService)
+        {
+            _eventService = eventService;
+        }
+
+        [HttpGet, Route("events")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<EventDto>))]
-        public Task<ActionResult<IEnumerable<EventDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<EventDto>>> GetAll()
         {
-            throw new NotImplementedException();
+            return Ok(await _eventService.ListAsync());
         }
 
-        [HttpGet]
+        [HttpGet, Route("event/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EventDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Exception))]
-        public Task<ActionResult<EventDto>> GetById()
+        public async Task<ActionResult<EventDto>> GetById(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Ok(await _eventService.GetAsync(id));
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPut, Route("event")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EventDto))]
-        public Task<ActionResult<EventDto>> CreateEvent([FromBody] EventDto eventDto)
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Exception))]
+        public async Task<ActionResult<EventDto>> CreateEvent([FromBody] EventDto eventDto)
         {
-            throw new NotImplementedException();
+            try
+            {                
+                return Ok(await _eventService.CreateAsync(eventDto));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPost]
+        [HttpPost, Route("event")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EventDto))]
-        public Task<ActionResult<EventDto>> UpdateEvent([FromBody] EventDto eventDto)
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(Exception))]
+        public async Task<ActionResult<EventDto>> UpdateEvent([FromBody] EventDto eventDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return Ok(await _eventService.UpdateAsync(eventDto));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpDelete]
+        [HttpDelete, Route("event/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EventDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(Exception))]
-        public Task<ActionResult<EventDto>> DeleteEvent([FromBody] long eventId)
+        public async Task<ActionResult> DeleteEvent([FromBody] long eventId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _eventService.DeleteAsync(eventId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }
