@@ -5,32 +5,98 @@
     using DataAccess.Entities;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    using MyCity.Core.Repository;
 
     public class EventService : IEventService
     {
-        public Task<Event> CreateAsync(EventDto dto)
+        private readonly IRepository<Event> _eventRepository;
+
+        public EventService(IRepository<Event> eventRepository)
         {
-            throw new NotImplementedException();
+            _eventRepository = eventRepository;
         }
 
-        public Task DeleteAsync(long id)
+        public async Task<Event> CreateAsync(EventDto dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = new Event
+                {
+                    Name = dto.Name,
+                    Description = dto.Description,
+                    DateStart = dto.DateStart,
+                    DateEnd = dto.DateEnd,
+                    LocationId = dto.LocationId,
+                    Images = dto.Images
+                };
+                return await _eventRepository.CreateAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(message: ex.Message);
+            }            
         }
 
-        public Task<Event> GetAsync(long id)
+        public async Task DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _eventRepository.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(message: ex.Message);
+            }
         }
 
-        public Task<IEnumerable<Event>> ListAsync()
+        public async Task<Event> GetAsync(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = await _eventRepository.GetAsync(id);
+                if (entity == null)
+                    throw new Exception(message: "Не найдено");
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(message: ex.Message);
+            } 
         }
 
-        public Task<Event> UpdateAsync(EventDto dto)
+        public async Task<IEnumerable<Event>> ListAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _eventRepository.ListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(message: ex.Message);
+            }
+        }
+
+        public async Task<Event> UpdateAsync(EventDto dto)
+        {
+            try
+            {
+                var entity = new Event
+                {
+                    Name = dto.Name,
+                    Description = dto.Description,
+                    DateStart = dto.DateStart,
+                    DateEnd = dto.DateEnd,
+                    LocationId = dto.LocationId,
+                    Images = dto.Images
+                };
+
+                return await _eventRepository.UpdateAsync(entity);
+            } 
+            catch (Exception ex)
+            {
+                throw new Exception(message: ex.Message);
+            }
         }
     }
 }
