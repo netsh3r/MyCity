@@ -16,7 +16,7 @@ public class LocationRepository : IRepository<Location>
     {
         _db = db;
     }
-
+    
     public async Task<Location> CreateAsync(Location entity)
     {
         await _db.Locations.AddAsync(entity);

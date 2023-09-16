@@ -12,12 +12,9 @@ public class ApplicationContext : DbContext
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
     {
+
     }
 
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // {
-    //     optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=MyCity;User ID=postgres;Password=123;Timeout=1024;CommandTimeout=1024;MinPoolSize=0;MaxPoolSize=64;MaxAutoPrepare=256;AutoPrepareMinUsages=3;ReadBufferSize=16384;WriteBufferSize=16384;ConnectionPruningInterval=5;ConnectionIdleLifetime=15;");
-    // }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Location>()
