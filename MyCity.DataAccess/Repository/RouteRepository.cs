@@ -25,7 +25,7 @@ public class RouteRepository : IRepository<Route>
 
     public async Task<Route> UpdateAsync(Route route)
     {
-        _db.Routes.Entry(route).State = EntityState.Modified;
+        // _db.Routes.Entry(route).State = EntityState.Modified;
         await _db.SaveChangesAsync();
         return route;
     }

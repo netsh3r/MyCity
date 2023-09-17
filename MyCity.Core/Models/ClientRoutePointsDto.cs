@@ -5,15 +5,10 @@ public class ClientRoutePointsDto
     /// <summary>
     /// Идентификатор локации
     /// </summary>
-    public long LocationId { get; set; }
+    public LocationDto Location { get; set; }
     
     /// <summary>
     /// Описание точки
     /// </summary>
     public string Description { get; set; }
-    
-    /// <summary>
-    /// Иденкс точки
-    /// </summary>
-    public int Index { get; set; }
 }

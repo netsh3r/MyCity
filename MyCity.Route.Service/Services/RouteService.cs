@@ -63,7 +63,7 @@ public class RouteService : IRouteService
                 await UpdateRouteAsync(clientRouteDto) :
                 await CreateRouteAsync(clientRouteDto);
             
-            await _repositoryRoutePoints.CreateAsync(new RoutePoints
+            await _repositoryRoutePoints.в(new RoutePoints
             {
                 RouteId = route.Id,
                 RoutePointsObj = JsonConvert.SerializeObject(clientRouteDto.RoutePoints)

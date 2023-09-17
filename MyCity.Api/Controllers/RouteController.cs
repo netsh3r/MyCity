@@ -17,7 +17,7 @@ public class RouteController : ControllerBase
     }
 
     
-    [HttpGet]
+    [HttpGet, Route("List")]
     public async Task<IEnumerable<RouteEntity>> List()
     {
         return await _routeService.ListAsync();
@@ -48,8 +48,8 @@ public class RouteController : ControllerBase
     }
 
     #region Route and RoutePoints
-    [HttpPut("CreateOrUpdateRoute")]
-    public async Task<ActionResult> CreateOrUpdate(ClientRouteDto clientRouteDto)
+    [HttpPut, Route("CreateOrUpdateRoute")]
+    public async Task<ActionResult> CreateOrUpdate([FromBody] ClientRouteDto clientRouteDto)
     {
         try
         {
