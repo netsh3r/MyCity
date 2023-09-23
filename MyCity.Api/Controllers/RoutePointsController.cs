@@ -16,8 +16,8 @@ public class RoutePointsController : ControllerBase
     }
 
     [ProducesResponseType(200,Type = typeof(ClientRouteDto))]
-    [HttpGet]
-    public async Task<ActionResult<ClientRouteDto>> Get([FromBody] long routeId)
+    [HttpGet, Route("Get")]
+    public async Task<ActionResult<ClientRouteDto>> Get(long routeId)
     {
         return Ok(await _routePointService.GetAsync(routeId));
     }
