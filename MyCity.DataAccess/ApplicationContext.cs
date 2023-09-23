@@ -9,6 +9,7 @@ public class ApplicationContext : DbContext
     public DbSet<RoutePoints> RoutePoints { get; set; }
     public DbSet<Point> Points { get; set; }
     public DbSet<Location> Locations { get; set; }
+    public DbSet<Event> Events { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
     {

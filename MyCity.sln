@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCity.Route.Service", "MyC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCity.Api", "MyCity.Api\MyCity.Api.csproj", "{E2DDBB2A-BB67-4B24-B73F-1C32C192B6C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCity.DataAccess", "MyCity.DataAccess\MyCity.DataAccess.csproj", "{2D3B67CD-D2CA-47BD-BCA7-EA229D6B248A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCity.DataAccess", "MyCity.DataAccess\MyCity.DataAccess.csproj", "{2D3B67CD-D2CA-47BD-BCA7-EA229D6B248A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCity.Event.Service", "MyCity.Event.Service\MyCity.Event.Service.csproj", "{D2CB5F68-EC3A-4B69-9BF7-ED04C8B803B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2D3B67CD-D2CA-47BD-BCA7-EA229D6B248A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D3B67CD-D2CA-47BD-BCA7-EA229D6B248A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D3B67CD-D2CA-47BD-BCA7-EA229D6B248A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2CB5F68-EC3A-4B69-9BF7-ED04C8B803B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2CB5F68-EC3A-4B69-9BF7-ED04C8B803B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2CB5F68-EC3A-4B69-9BF7-ED04C8B803B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2CB5F68-EC3A-4B69-9BF7-ED04C8B803B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
