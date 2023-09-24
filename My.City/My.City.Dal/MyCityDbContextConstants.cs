@@ -4,5 +4,5 @@ public class MyCityDbContextConstants
 {
     public const string MigrationsHistoryTable = "__EFMigrationsHistory";
 
-    public const string Schema = "public";
+    public const string Schema = "my_city_data";
 }

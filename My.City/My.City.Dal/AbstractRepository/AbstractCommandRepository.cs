@@ -1,4 +1,5 @@
-﻿using My.City.Abstraction.Dal.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using My.City.Abstraction.Dal.Repository;
 using My.City.Abstraction.Domain.Entity;
 using My.City.Dal.AbstractRepository;
 
@@ -33,11 +34,32 @@ public abstract class AbstractCommandRepository<TEntity, TPrimaryKey, TContext> 
 
     public void UpdateRange(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         => DbSet.UpdateRange(entities);
-
+    
     public void Delete(TEntity entity, CancellationToken cancellationToken = default)
         => DbSet.Remove(entity);
 
     public void DeleteRange(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         => DbSet.RemoveRange(entities);
+
+    public void Delete(TPrimaryKey id, CancellationToken cancellationToken = default)
+    {
+        DbSet.Remove(DbSet.Find(id));
+    }
+
+    public async Task<TEntity> AddOrUpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+    {
+        if (entity.Id is null)
+        {
+            return await AddAsync(entity, cancellationToken);
+        }
+
+        return Update(entity, cancellationToken);
+    }
+
+    public async Task AddOrUpdateRangeAsync(IEnumerable<TEntity> entity, CancellationToken cancellationToken = default)
+    {
+        await AddRangeAsync(entity.Where(x => x.Id is null), cancellationToken);
+        UpdateRange(entity.Where(x => x.Id is not null), cancellationToken);
+    }
 }
 

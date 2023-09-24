@@ -8,21 +8,49 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MyCity.DataAccess.Migrations
+namespace Dal.Migrations
 {
     [DbContext(typeof(MyCityContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    partial class MyCityContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasDefaultSchema("my_city_data")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("MyCity.DataAccess.Entities.Location", b =>
+            modelBuilder.Entity("My.City.Core.Models.Event", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("DateEnd")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DateStart")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Event", "my_city_data");
+                });
+
+            modelBuilder.Entity("My.City.Core.Models.Location", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,28 +59,35 @@ namespace MyCity.DataAccess.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("LocationType")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<long?>("PointId")
                         .HasColumnType("bigint");
 
                     b.Property<TimeOnly?>("WorkTimeEnd")
+                        .IsRequired()
                         .HasColumnType("time without time zone");
 
                     b.Property<TimeOnly?>("WorkTimeStart")
+                        .IsRequired()
                         .HasColumnType("time without time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PointId");
 
-                    b.ToTable("Locations", (string)null);
+                    b.ToTable("Location", "my_city_data");
                 });
 
-            modelBuilder.Entity("MyCity.DataAccess.Entities.Point", b =>
+            modelBuilder.Entity("My.City.Core.Models.Point", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,33 +105,10 @@ namespace MyCity.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Points", (string)null);
+                    b.ToTable("Point", "my_city_data");
                 });
 
-            modelBuilder.Entity("MyCity.DataAccess.Entities.Route", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<int>("Length")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("StartRoutePointId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Routes", (string)null);
-                });
-
-            modelBuilder.Entity("MyCity.DataAccess.Entities.RoutePoints", b =>
+            modelBuilder.Entity("My.City.Core.Models.Route", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,45 +120,43 @@ namespace MyCity.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("NextRoutePointId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Length")
+                        .HasColumnType("integer");
 
-                    b.Property<long>("PointId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NextRoutePointId");
-
-                    b.HasIndex("PointId");
-
-                    b.ToTable("RoutePoints", (string)null);
+                    b.ToTable("Route", "my_city_data");
                 });
 
-            modelBuilder.Entity("MyCity.DataAccess.Entities.Location", b =>
+            modelBuilder.Entity("My.City.Core.Models.RoutePoints", b =>
                 {
-                    b.HasOne("MyCity.DataAccess.Entities.Point", "Point")
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("RouteId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RoutePointsObj")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoutePoints", "my_city_data");
+                });
+
+            modelBuilder.Entity("My.City.Core.Models.Location", b =>
+                {
+                    b.HasOne("My.City.Core.Models.Point", "Point")
                         .WithMany()
                         .HasForeignKey("PointId");
-
-                    b.Navigation("Point");
-                });
-
-            modelBuilder.Entity("MyCity.DataAccess.Entities.RoutePoints", b =>
-                {
-                    b.HasOne("MyCity.DataAccess.Entities.RoutePoints", "NextRoutePoint")
-                        .WithMany()
-                        .HasForeignKey("NextRoutePointId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyCity.DataAccess.Entities.Point", "Point")
-                        .WithMany()
-                        .HasForeignKey("PointId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("NextRoutePoint");
 
                     b.Navigation("Point");
                 });

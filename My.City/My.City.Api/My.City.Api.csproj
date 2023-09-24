@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\My.City.Business\My.City.Business.csproj" />
       <ProjectReference Include="..\My.City.Core\My.City.Core.csproj" />
       <ProjectReference Include="..\My.City.Dal\My.City.Dal.csproj" />
     </ItemGroup>

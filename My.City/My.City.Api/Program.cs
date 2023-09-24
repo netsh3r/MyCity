@@ -5,12 +5,17 @@ using My.City.Api.Application.Database;
 using My.City.Api.Application.WebHost;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Business.Map;
+using Business.Service.Location;
+using Business.Service.Route;
+using Business.Service.RoutePoints;
 using My.City.Dal;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseUrls();
 builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
@@ -31,11 +36,13 @@ builder.Services.AddCors(options =>
                 .WithExposedHeaders("Content-Disposition");
         });
 });
+builder.Services.AddScoped<ILocationService, LocationService>();
+builder.Services.AddScoped<IRouteService, RouteService>();
+builder.Services.AddScoped<IRoutePointService, RoutePointService>();
 builder.Services.AddPostgreSql<MyCityContext>(builder.Configuration);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 var assemblies = AssembliesExtension.GetAssemblies(builder.Configuration).Distinct().ToArray();
 builder.Host.ConfigureContainer<ContainerBuilder>(b => b.RegisterDbServices(assemblies));
-// builder.Services.AddTransient(typeof(IReadRepository<>));
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

@@ -9,6 +9,18 @@
 
     <ItemGroup>
       <PackageReference Include="JetBrains.Annotations" />
+        <PackageReference Include="AutoMapper" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Model\Event\" />
+      <Folder Include="Service\Event\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\My.City.Abstraction.Dal\My.City.Abstraction.Dal.csproj" />
+      <ProjectReference Include="..\My.City.Core\My.City.Core.csproj" />
     </ItemGroup>
 
 </Project>

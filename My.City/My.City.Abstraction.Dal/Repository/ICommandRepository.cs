@@ -18,6 +18,12 @@ public interface ICommandRepository<TEntity, in TPrimaryKey> : IReadRepository<T
     void Delete(TEntity entity, CancellationToken cancellationToken = default);
 
     void DeleteRange(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default);
+    
+    void Delete(TPrimaryKey id, CancellationToken cancellationToken = default);
+
+    Task<TEntity> AddOrUpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
+    
+    Task AddOrUpdateRangeAsync(IEnumerable<TEntity> entity, CancellationToken cancellationToken = default);
 }
 
 [PublicAPI]

@@ -21,13 +21,13 @@
         /// Дата и время окончания мероприятия
         /// </summary>
         public DateTime DateEnd { get; set; }
-        /// <summary>
-        /// Id места проведения мероприятия
-        /// </summary>
-        public long LocationId { get; set; }
-        /// <summary>
-        /// Список ссылок/id картинок
-        /// </summary>
-        public List<string> Images { get; set; }
+        // /// <summary>
+        // /// Id места проведения мероприятия
+        // /// </summary>
+        // public Location Location { get; set; }
+        // /// <summary>
+        // /// Список ссылок/id картинок
+        // /// </summary>
+        // public List<string> Images { get; set; }
     }
 }

@@ -28,5 +28,9 @@
       <ProjectReference Include="..\My.City.Common\My.City.Common.csproj" />
       <ProjectReference Include="..\My.City.Core\My.City.Core.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Migrations\" />
+    </ItemGroup>
 
 </Project>
