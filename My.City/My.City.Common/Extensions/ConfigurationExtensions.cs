@@ -1,0 +1,18 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace My.City.Common.Extension;
+
+public static class ConfigurationExtensions
+{
+    public static T GetSettingsOrDefault<T>(this IConfiguration configuration) where T : ISettings, new()
+        => configuration.GetSection(typeof(T).Name).Get<T>() ?? new T();
+
+    public static T ConfigureSettings<T>(this IServiceCollection service, IConfiguration configuration) where T : class, ISettings, new()
+    {
+        var section = configuration.GetSection(typeof(T).Name);
+        service.Configure<T>(section);
+
+        return section.Get<T>() ?? new T();
+    }
+}
