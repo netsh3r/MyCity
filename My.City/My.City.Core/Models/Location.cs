@@ -40,7 +40,7 @@ public class Location : BaseEntity
     public Point? Point { get; set; }
 
     /// <summary>
-    /// Ссылка на картинку локации.
+    /// Картинка локации.
     /// </summary>
-    public string ImageUrl { get; set; }
+    public byte[]? Image { get; set; }
 }
