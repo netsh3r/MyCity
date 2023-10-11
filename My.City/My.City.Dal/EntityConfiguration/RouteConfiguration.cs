@@ -13,6 +13,8 @@ public class RouteConfiguration: BaseEntityConfiguration<Route, long>
             .IsRequired();
         builder.Property(e => e.Length)
             .IsRequired();
+        builder.Property(e => e.RouteType)
+            .IsRequired();
         base.Configure(builder);
     }
 }

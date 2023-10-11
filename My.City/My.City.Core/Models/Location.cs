@@ -38,4 +38,9 @@ public class Location : BaseEntity
     ///     Координаты локации в двухмерной проекции
     /// </summary>
     public Point? Point { get; set; }
+
+    /// <summary>
+    /// Ссылка на картинку локации.
+    /// </summary>
+    public string ImageUrl { get; set; }
 }
