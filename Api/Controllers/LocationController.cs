@@ -1,30 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyCity.Core.Models;
-using MyCity.Core.Services;
+using Business.Model.Location;
+using Business.Service.Location;
+using Dto.Dal;
+using Microsoft.AspNetCore.Mvc;
 
-namespace MyCity.Controllers;
+namespace My.City.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class LocationController : ControllerBase
 {
-    private ILocationService _locationService;
+    private readonly ILocationService _locationService;
 
     public LocationController(ILocationService locationService)
     {
         _locationService = locationService;
     }
-
-    [ProducesResponseType(200,Type = typeof(DataAccess.Entities.Location))]
+    
+    [ProducesResponseType(200,Type = typeof(Location))]
     [HttpPost, Route("List")]
-    public async Task<IEnumerable<DataAccess.Entities.Location>> List()
+    public async Task<IEnumerable<LocationListDto>> List()
     {
         return await _locationService.ListAsync();
     }
     
-    [ProducesResponseType(200,Type = typeof(DataAccess.Entities.Location))]
+    [ProducesResponseType(200,Type = typeof(Location))]
     [HttpGet, Route("GetLocation/{id}")]
-    public async Task<ActionResult<DataAccess.Entities.Location>> GetLocation(long id)
+    public async Task<ActionResult<LocationDto>> GetLocation(long id)
     {
         try
         {
@@ -38,11 +39,11 @@ public class LocationController : ControllerBase
     }
     
     [HttpPut, Route("CreateLocation")]
-    public async Task<ActionResult<DataAccess.Entities.Location>> CreateLocation([FromBody] LocationDto locationDto)
+    public async Task<ActionResult<LocationDto>> CreateLocation([FromBody] LocationDto locationDto)
     {
         try
         {
-            return await _locationService.CreateAsync(locationDto);
+            return await _locationService.CreateOrUpdateAsync(locationDto);
         }
         catch (ArgumentException ex)
         {
@@ -51,11 +52,11 @@ public class LocationController : ControllerBase
     }
     
     [HttpPut, Route("UpdateLocation")]
-    public async Task<ActionResult<DataAccess.Entities.Location>> UpdateLocation([FromBody] LocationDto locationDto)
+    public async Task<ActionResult<LocationDto>> UpdateLocation([FromBody] LocationDto locationDto)
     {
         try
         {
-            return await _locationService.UpdateAsync(locationDto); 
+            return await _locationService.CreateOrUpdateAsync(locationDto); 
         }
         
         catch (ArgumentException ex)
@@ -65,11 +66,11 @@ public class LocationController : ControllerBase
     }
 
     [HttpDelete, Route("DeleteLocation/{id}")]
-    public async Task<ActionResult<DataAccess.Entities.Location>> DeleteLocation(long id)
+    public ActionResult DeleteLocation(long id)
     {
         try
         {
-            await _locationService.DeleteAsync(id);
+            _locationService.Delete(id);
             return Ok();
         }
         catch (ArgumentException ex)

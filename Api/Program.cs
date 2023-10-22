@@ -1,24 +1,16 @@
-using My.City.Abstraction.Dal.Repository;
-using My.City.Abstraction.Domain.Entity;
-using My.City.Api.Application;
-using My.City.Api.Application.Database;
-using My.City.Api.Application.WebHost;
-using Autofac;
+using Api.Application.Database;
 using Autofac.Extensions.DependencyInjection;
-using Business.Map;
-using Business.Service.Location;
-using Business.Service.Route;
-using Business.Service.RoutePoints;
+using Business;
 using Dal;
-using My.City.Dal;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseUrls();
 builder.Services.AddControllers().AddNewtonsoftJson();
-builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDalDependencies();
+builder.Services.AddBusinessDependencies();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsAllowAll",
@@ -39,8 +31,6 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddPostgreSql<MyCityContext>(builder.Configuration);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-var assemblies = AssembliesExtension.GetAssemblies(builder.Configuration).Distinct().ToArray();
-builder.Host.ConfigureContainer<ContainerBuilder>(b => b.RegisterDbServices(assemblies));
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

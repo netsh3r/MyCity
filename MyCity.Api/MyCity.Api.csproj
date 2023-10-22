@@ -11,8 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyCity.Location.Service\MyCity.Location.Service.csproj" />
-    <ProjectReference Include="..\MyCity.Route.Service\MyCity.Route.Service.csproj" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dal\Dal.csproj" />
   </ItemGroup>
 
 </Project>

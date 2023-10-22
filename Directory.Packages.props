@@ -1,0 +1,73 @@
+<Project>
+	<PropertyGroup>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageVersion Include="Allure.XUnit" Version="2.9.5-preview.1" />
+		<PackageVersion Include="AspNetCore.HealthChecks.NpgSql" Version="6.0.2" />
+		<PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.4" />
+		<PackageVersion Include="AutoMapper" Version="12.0.1" />
+		<PackageVersion Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageVersion Include="AutoFixture" Version="4.18.0" />
+		<PackageVersion Include="Autofac" Version="6.4.0" />
+		<PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+		<PackageVersion Include="DateOnlyTimeOnly.AspNet.Swashbuckle" Version="1.0.3" />
+		<PackageVersion Include="DeepEqual" Version="4.2.1" />
+		<PackageVersion Include="Duende.AccessTokenManagement" Version="1.0.0" />
+		<PackageVersion Include="EFCore.NamingConventions" Version="7.0.2" />
+		<PackageVersion Include="Extensions.Hosting.AsyncInitialization" Version="1.0.0" />
+		<PackageVersion Include="Flurl" Version="3.0.7" />
+		<PackageVersion Include="FluentValidation" Version="11.0.3" />
+		<PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.3" />
+		<PackageVersion Include="JetBrains.Annotations" Version="2022.3.1" />
+		<PackageVersion Include="JunitXml.TestLogger" Version="3.0.114" />
+		<PackageVersion Include="IdentityModel" Version="6.0.0" />
+		<PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.6" />
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="6.0.21" />
+		<PackageVersion Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.1" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.3" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.3" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.3" />
+		<PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" /> 
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0-preview.6.23329.7" />
+		<PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+		<PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+		<PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0"/>
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+		<PackageVersion Include="Moq" Version="4.18.1" />
+		<PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+		<PackageVersion Include="Polly" Version="7.2.3" />
+		<PackageVersion Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
+		<PackageVersion Include="Refit" Version="5.2.4" />
+		<PackageVersion Include="Refit.HttpClientFactory" Version="5.2.4" />
+		<PackageVersion Include="Serilog" Version="2.12.0" />
+		<PackageVersion Include="Serilog.AspNetCore" Version="3.0.0" />
+		<PackageVersion Include="Serilog.Extensions.Logging" Version="3.1.0" />
+		<PackageVersion Include="Serilog.Sinks.Console" Version="4.1.0" />
+		<PackageVersion Include="StackExchange.Utils.Configuration" Version="0.1.12" />
+		<PackageVersion Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.18.0" />
+		<PackageVersion Include="StrawberryShake.Transport.Http" Version="12.15.0" />
+		<PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
+		<PackageVersion Include="VaultSharp" Version="1.12.2.1" />
+		<PackageVersion Include="xunit" Version="2.4.2" />
+		<PackageVersion Include="xunit.runner.console" Version="2.4.2" />
+		<PackageVersion Include="xunit.runner.visualstudio" Version="2.4.2" />
+		<PackageVersion Include="Xunit.Combinatorial" Version="1.5.25" />
+		<PackageVersion Include="Quartz" Version="3.6.2" />
+		<PackageVersion Include="Quartz.Extensions.DependencyInjection" Version="3.6.2" />
+		<PackageVersion Include="Quartz.Extensions.Hosting" Version="3.6.2" />
+		<PackageVersion Include="Quartz.Serialization.Json" Version="3.6.2" />
+		<PackageVersion Include="FluentAssertions" Version="6.8.0" />
+	</ItemGroup>
+</Project>

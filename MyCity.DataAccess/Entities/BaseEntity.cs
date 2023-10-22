@@ -3,7 +3,7 @@
 /// <summary>
 ///     Базовый класс сущности
 /// </summary>
-public class BaseEntity
+public class BaseEntity 
 {
     /// <summary>
     ///     Идентификатор
