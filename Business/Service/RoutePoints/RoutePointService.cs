@@ -33,9 +33,13 @@ public class RoutePointService : IRoutePointService
         }
         else
         {
-            var result = await _routePointRepository.GetByRouteIdAsync(routeId);
+            var result = await _routePointRepository.GetByRouteIdAsync(routeId) ?? new RoutePoint
+            {
+                RouteId = routeId
+            };
             result.RoutePointObj = JsonSerializer.Serialize(dto);
-            _routePointRepository.Update(result);
+            
+            _routePointRepository.AddOrUpdateAsync(result);
         }
 
         return dto;

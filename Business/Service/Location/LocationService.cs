@@ -8,13 +8,15 @@ public class LocationService : ILocationService
 {
     private readonly ILocationRepository _locationRepository;
     private readonly ILocationConverters _locationConverters;
+    private readonly IPointConverters _pointConverters;
     private readonly IPointRepository _pointRepository;
 
-    public LocationService(ILocationRepository locationRepository, ILocationConverters locationConverters, IPointRepository pointRepository)
+    public LocationService(ILocationRepository locationRepository, ILocationConverters locationConverters, IPointRepository pointRepository, IPointConverters pointConverters)
     {
         _locationRepository = locationRepository;
         _locationConverters = locationConverters;
         _pointRepository = pointRepository;
+        _pointConverters = pointConverters;
     }
 
     public async Task<IReadOnlyCollection<LocationListDto>> ListAsync()
@@ -32,7 +34,9 @@ public class LocationService : ILocationService
     public async Task<LocationDto> CreateOrUpdateAsync(LocationDto locationDto)
     {
         var result = await _locationRepository.AddOrUpdateAsync(_locationConverters.Convert(locationDto));
+        var pointResult = await _pointRepository.AddOrUpdateAsync(_pointConverters.Convert(locationDto.Point));
         locationDto.Id = result.Id;
+        locationDto.Point.Id = pointResult.Id;
         return locationDto;
     }
 

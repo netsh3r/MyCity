@@ -4,8 +4,8 @@ namespace Dal.Converter;
 
 public class LocationConverter : IConverter<Dto.Dal.Location, long, Location>
 {
-    public Dto.Dal.Location Convert(Location entity)
-        => new()
+    public Dto.Dal.Location? Convert(Location? entity)
+        => entity is not null? new()
         {
             Id = entity.Id,
             Name = entity.Name,
@@ -14,7 +14,7 @@ public class LocationConverter : IConverter<Dto.Dal.Location, long, Location>
             {
                 Id = entity.PointId,
             }
-        };
+        } : null;
 
     public Location Convert(Dto.Dal.Location model)
         => new()

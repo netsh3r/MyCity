@@ -15,6 +15,7 @@ public static class Bootstrap
         service.AddScoped<IRouteService, RouteService>();
         service.AddScoped<IRoutePointService, RoutePointService>();
         service.AddSingleton<ILocationConverters, LocationConverters>();
+        service.AddSingleton<IPointConverters, PointConverters>();
         service.AddSingleton<IRouteConverters, RouteConverters>();
         return service;
     }

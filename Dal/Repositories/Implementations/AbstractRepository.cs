@@ -43,9 +43,20 @@ public abstract class AbstractRepository<TModel, TPrimaryKey, TEntity> : IReposi
 
     public async Task<TModel> Update(TModel model, CancellationToken cancellationToken = default)
     {
-        var entryEntity = DbSet.Update(_converter.Convert(model));
+        var newEntity = _converter.Convert(model);
+        var entity = DbSet.Local.FirstOrDefault(new IdSpecification<TEntity, TPrimaryKey>(newEntity.Id));
+        if (entity is null)
+        {
+            entity = newEntity;
+            DbSet.Update(entity);
+        }
+        else
+        {
+            _context.Entry(entity).CurrentValues.SetValues(newEntity);
+        }
+        
         await SaveChangeAsync(cancellationToken);
-        return _converter.Convert(entryEntity.Entity);
+        return _converter.Convert(entity);
     }
 
     public async Task Delete(TPrimaryKey id, CancellationToken cancellationToken)

@@ -10,7 +10,7 @@ public class RoutePointRepository: AbstractRepository<RoutePoint, long, Entities
     {
     }
 
-    public async Task<RoutePoint> GetByRouteIdAsync(long RouteId)
+    public async Task<RoutePoint?> GetByRouteIdAsync(long RouteId)
     {
         var result = await DbSet.FirstOrDefaultAsync(x => x.RouteId == RouteId);
         return _converter.Convert(result);
