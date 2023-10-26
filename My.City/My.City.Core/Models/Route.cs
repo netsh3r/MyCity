@@ -1,4 +1,6 @@
-﻿namespace My.City.Core.Models;
+﻿using Core.Enums;
+
+namespace My.City.Core.Models;
 
 /// <summary>
 ///     Модель маршрута
@@ -11,4 +13,5 @@ public class Route : BaseEntity
     public string Name { get; set; }
     public string Description { get; set; }
     public int Length { get; set; }
+    public RouteType RouteType { get; set; }
 }

@@ -22,5 +22,7 @@ public class LocationConfiguration: BaseEntityConfiguration<Location, long>
             .IsRequired();
         builder.Property(e => e.Description)
             .IsRequired();
+        builder.Property(e => e.Image)
+            .IsRequired();
     }
 }
