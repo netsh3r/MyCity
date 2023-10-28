@@ -6,4 +6,5 @@ public class Location : BaseEntity
     public string Description { get; set; }
     public Point Point { get; set; }
     public long? PointId { get; set; }
+    public string Href { get; set; }
 }

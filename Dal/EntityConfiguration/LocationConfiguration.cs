@@ -14,6 +14,8 @@ public class LocationConfiguration : BaseEntityConfiguration<Location, long>
             .IsRequired();
         builder.Property(e => e.Description)
             .IsRequired();
+        builder.Property(x => x.Href)
+            .IsRequired();
         builder.HasOne(x => x.Point)
             .WithOne()
             .HasForeignKey<Location>(x => x.PointId)

@@ -17,6 +17,7 @@ public class LocationConverters : ILocationConverters
                 X = locationDto.Point.X,
                 Y = locationDto.Point.Y,
             },
+            Href = locationDto.Href
         };
 
     public LocationDto Convert(Location locationDto)
@@ -31,5 +32,6 @@ public class LocationConverters : ILocationConverters
                 X = locationDto.Point.X,
                 Y = locationDto.Point.Y,
             },
+            Href = locationDto.Href
         };
 }

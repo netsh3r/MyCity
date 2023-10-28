@@ -16,4 +16,5 @@ public class LocationDto : BaseDto
     ///     Координаты
     /// </summary>
     public PointDto Point { get; set; }
+    public string? Href { get; set; }
 }

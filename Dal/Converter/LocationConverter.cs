@@ -13,12 +13,14 @@ public class LocationConverter : IConverter<Dto.Dal.Location, long, Location>
             Point = new ()
             {
                 Id = entity.PointId,
-            }
+            },
+            Href = entity.Href
         } : null;
 
     public Location Convert(Dto.Dal.Location model)
         => new()
         {
+            Href = model.Href,
             Id = model.Id ?? 0,
             Name = model.Name,
             Description = model.Description,
