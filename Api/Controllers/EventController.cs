@@ -6,5 +6,9 @@ namespace My.City.Api.Controllers;
 [Route("[controller]")]
 public class EventController: ControllerBase
 {
-    
+    [HttpGet]
+    public string Test()
+    {
+        return "test";
+    }
 }
