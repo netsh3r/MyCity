@@ -1,5 +1,6 @@
 using Business.Converters;
 using Business.Converters.Implementations;
+using Business.Service;
 using Business.Service.Location;
 using Business.Service.Route;
 using Business.Service.RoutePoints;
@@ -17,6 +18,7 @@ public static class Bootstrap
         service.AddSingleton<ILocationConverters, LocationConverters>();
         service.AddSingleton<IPointConverters, PointConverters>();
         service.AddSingleton<IRouteConverters, RouteConverters>();
+        service.AddSingleton<Test, Test>();
         return service;
     }
 }

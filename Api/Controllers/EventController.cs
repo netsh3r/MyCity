@@ -1,3 +1,4 @@
+using Business.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace My.City.Api.Controllers;
@@ -6,9 +7,16 @@ namespace My.City.Api.Controllers;
 [Route("[controller]")]
 public class EventController: ControllerBase
 {
+    private readonly Test _test;
+
+    public EventController(Test test)
+    {
+        _test = test;
+    }
+
     [HttpGet]
     public string Test()
     {
-        return "test";
+        return _test.Get();
     }
 }
