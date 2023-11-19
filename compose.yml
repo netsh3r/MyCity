@@ -1,14 +1,21 @@
 ﻿version: "3.9"
 
 services:
-  server:
+  backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - 8080:80
     depends_on:
       - postgres_db
+    
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
       
   postgres_db:
     container_name: MyCityPostgres
