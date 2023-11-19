@@ -20,6 +20,7 @@ public class LocationController : ControllerBase
     [HttpPost, Route("List")]
     public async Task<IEnumerable<LocationListDto>> List()
     {
+        Console.WriteLine("test");
         return await _locationService.ListAsync();
     }
     

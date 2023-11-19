@@ -5,7 +5,8 @@ using Dal;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.WebHost.UseUrls();
+// builder.WebHost.UseUrls("http://127.0.0.1:5001");
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
