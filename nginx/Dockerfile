@@ -19,3 +19,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Api.dll"]
+
+FROM nginx
+COPY nginx.conf /etc/nginx/nginx.conf
