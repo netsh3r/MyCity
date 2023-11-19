@@ -23,7 +23,8 @@ builder.Services.AddCors(options =>
                     "http://localhost:3000",
                     "http://localhost:3030",
                     "https://localhost:3030",
-                    "https://netsh3r.github.io")
+                    "https://netsh3r.github.io",
+                    "http://185.43.6.229")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials()
