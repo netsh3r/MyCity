@@ -18,6 +18,7 @@ public static class Bootstrapp
         service.AddSingleton<IRouteRepository, RouteRepository>();
         service.AddSingleton<IRoutePointRepository, RoutePointRepository>();
         service.AddSingleton<IPointRepository, PointRepository>();
+        service.AddSingleton<IImageRepository, ImageRepository>();
         return service;
     }
 }

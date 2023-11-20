@@ -1,6 +1,5 @@
 using Dal.Converter;
 using Dto.Dal;
-using Microsoft.EntityFrameworkCore;
 
 namespace Dal.Repositories.Implementations;
 
