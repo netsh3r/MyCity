@@ -25,7 +25,7 @@ services:
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: MyCity
     ports:
-      - "5433:5433"
+      - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
@@ -33,6 +33,33 @@ services:
       interval: 10s
       timeout: 3s
       retries: 3
+    networks:
+      - postgres
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:7.2
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "habrpguser@habr.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgadminpwd4habr"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    networks:
+      - postgres
 
 volumes:
   postgres-data:
+  pgadmin-data:
+
+networks:
+  postgres:
+    driver: bridge
