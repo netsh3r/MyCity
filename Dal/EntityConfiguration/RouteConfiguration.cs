@@ -7,7 +7,7 @@ public class RouteConfiguration: BaseEntityConfiguration<Route, long>
 {
     public override void Configure(EntityTypeBuilder<Route> builder)
     {
-        builder.Property(e => e.Name)
+        builder.Property(e => e.NameRoute)
             .IsRequired();
         builder.Property(e => e.Description)
             .IsRequired();

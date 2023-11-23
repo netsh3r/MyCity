@@ -8,7 +8,7 @@ public class RouteConverter : IConverter<Route, long, Entities.Route>
         => new()
         {
             Id = entity.Id,
-            Name = entity.Name,
+            Name = entity.NameRoute,
             Description = entity.Description
         };
 
@@ -16,7 +16,7 @@ public class RouteConverter : IConverter<Route, long, Entities.Route>
         => new()
         {
             Id = model.Id ?? 0,
-            Name = model.Name,
+            NameRoute = model.Name,
             Description = model.Description
         };
 }
